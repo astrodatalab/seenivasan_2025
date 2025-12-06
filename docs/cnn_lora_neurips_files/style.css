@@ -2428,3 +2428,12 @@ span.email-notes {
     padding: 0;
   }
 }
+
+
+ul.affiliations {
+    list-style-type: none;
+    padding-left: 0; /* optional: removes left indent */
+}
+.affiliations li {
+    color:  #444;
+}

@@ -239,7 +239,7 @@ models for photometric redshift prediction">
         <li><a class="nav-link scrollto active" href="#overview">Overview</a></li>
         <li><a class="nav-link scrollto" href="#paper">Paper</a></li>
         <li><a class="nav-link scrollto" href="#data">Data</a></li>
-        <li><a class="nav-link scrollto" href="#training">Training</a></li>
+        <li><a class="nav-link scrollto" href="#figures">Figures</a></li>
         <li><a class="nav-link scrollto" href="#code">Code</a></li>
         <li><a class="nav-link scrollto" href="#poster">Poster</a></li>
       </ul>
@@ -255,8 +255,18 @@ models for photometric redshift prediction">
   <section class="banner mb-5">
     <div class="container">
       <h1>Combining datasets with different ground truths using Low-Rank Adaptation to generalize image-based CNN models for photometric redshift prediction</h1>
+        
       <p>
-        This website consolidates the paper, poster, dataset, and code for our submission to NeurIPS 2025 <a href="https://ml4physicalsciences.github.io/2025/"><em><strong>Machine Learning and the Physical Sciences</strong></em></a> Workshop.
+        Vikram Seenivasan <sup>1</sup>, Srinath Saikrishnan<sup>2</sup>, Andrew Lizarraga<sup>3</sup>, Jonathan Soriano<sup>1</sup>, Bernie Boscoe <sup>4</sup> and Tuan Do<sup>1</sup>. 
+<ul class="affiliations">
+    <li><sup>1</sup> Department of Physics and Astronomy, UCLA, Los Angeles, CA, USA 90095</li>
+    <li><sup>2</sup> Department of Computer Science, UCLA, Los Angeles, CA, USA 90095</li>
+    <li><sup>3</sup> Department of Statistics and Data Science, UCLA, Los Angeles, CA, USA 90095</li>
+    <li><sup>4</sup> Department of Computer Science, Southern Oregon University, Ashland, OR, USA 97520</li>
+</ul>
+        </p>
+        <p>
+        This website consolidates the paper, poster, data, and code for our submission to NeurIPS 2025 <a href="https://ml4physicalsciences.github.io/2025/"><em><strong>Machine Learning and the Physical Sciences</strong></em></a> Workshop.
       </p>
     </div>
   </section>
@@ -269,7 +279,7 @@ models for photometric redshift prediction">
       <li class="list-group-item"><a href="#overview">Overview</a></li>
       <li class="list-group-item"><a href="#paper">Paper</a></li>
       <li class="list-group-item"><a href="#data">Data</a></li>
-      <li class="list-group-item"><a href="#model-examples">Training Methodology</a></li>
+      <li class="list-group-item"><a href="#figures">Figures</a></li>
       <li class="list-group-item"><a href="#code">Code</a></li>
       <li class="list-group-item"><a href="#poster">Poster</a></li>
     </ul>
@@ -279,9 +289,11 @@ models for photometric redshift prediction">
   <!-- ======= Overview Section ======= -->
   <section id="overview" class="mb-5">
     <h2>Overview</h2>
-    <p>Large scale surveys such as <strong>LSST</strong>and <strong>Euclid</strong> will image billions of galaxies and require accurate galaxy redshift estimates to constrain properties of dark energy and cosmological models. Machine learning models that predict redshift meet the demand of these massive datasets but are biased to the ground truth redshift type in their training data. Thus, we investigate unifying the strengths of spectroscopic (accuracy of redshift) and photometric (representativeness of diverse galaxies) redshift ground truths in one model. 
-We use a ResNet18 augmented with a neural network regressor to predict redshifts from 5-band <strong>grizy</strong> images. We use two datasets in this work: (1) GalaxiesML, a spectroscopic redshift ground truth dataset, and (2) TransferZ-Images, a photometric redshift ground truth dataset we create from TransferZ. We train a base model using TransferZ-Images, which contains broad galaxy types but is less accurate. We then fine-tune using LoRA on GalaxiesML. These are more accurate but limited to bright galaxies and take orders of magnitude more time to obtain, so are less available for large surveys.T he LoRA model performs better than a traditional transfer learning method, with ∼ 2.5× less bias and ∼2.2× less scatter. Retraining the model on a combined dataset yields a model that generalizes better than LoRA but at a cost of greater computation time. Our work shows that LoRA is useful for fine-tuning regression models in astrophysics by providing a middle ground
-between full retraining and zero-shot generalization. LoRA shows potential in allowing us to leverage existing pretrained astrophysical models, especially for data sparse tasks.
+    <p>Large scale surveys such as <strong>LSST</strong> and <strong>Euclid</strong> will image billions of galaxies and require accurate galaxy redshift estimates to constrain properties of dark energy and cosmological models. Machine learning models that predict redshift meet the demand of processing these massive datasets, but traditionally only use spectroscopic redshift as ground truth in training. Spectroscopic redshifts are limited to bright emission galaxies, so represent only a subset of galaxy populations in the universe. Photometric redshifts obtained from galaxy photometry sampled in discrete wavelength bands are available for fainter and more diverse galaxy types, but are less accurate. Thus, we investigate unifying the strengths of spectroscopic (accuracy of redshift) and photometric (representativeness of diverse galaxies) redshift ground truths to create models that generalize across gaalxy populations.
+    </p>
+        <p>
+We use a ResNet18 augmented with a neural network regressor to predict redshifts from 5-band <em>grizy</em> images. We use two datasets in this work: (1) GalaxiesML (Do et. al. 2024), a spectroscopic redshift ground truth dataset, and (2) TransferZ-Images, a photometric redshift ground truth dataset we create from TransferZ (Soriano et. al. 2024). We train a base model using TransferZ-Images, then fine-tune using LoRA or traditional transfer learning on GalaxiesML. The LoRA model performs better than the traditional transfer learning method, with ∼ 2.5× less bias and ∼2.2× less scatter. Retraining the model on a combined dataset yields a model that generalizes better than LoRA but at a cost of greater computation time. Our work shows that LoRA is useful for fine-tuning regression models in astrophysics by providing a middle ground between full retraining and no retraining. LoRA shows potential in allowing us to leverage existing pretrained astrophysical models, especially for data sparse tasks.
+        </p>
   </section>
   <!-- End Overview Section -->
 
@@ -290,45 +302,47 @@ between full retraining and zero-shot generalization. LoRA shows potential in al
     <h2>NeurIPS ML4PS Conference Paper</h2>
     <p>Our paper submission to the NeurIPS 2025 <a href="https://ml4physicalsciences.github.io/2025/"><em>Machine Learning and the Physical Sciences</em></a> Workshop details the data, model architecture, training methodology and test results.</p>
     <a href="https://ml4physicalsciences.github.io/2025/files/NeurIPS_ML4PS_2025_272.pdf" class="btn btn-success btn-lg" download="">View the Paper on the NeurIPS-ML4PS website</a>
-    <br><br>
   </section>
 
   <!-- Data Files Section -->
-  <section id="dataset" class="mb-5">
+  <section id="data" class="mb-5">
     <h2>Data</h2>
-    <p>We use two datasets in this work. First, we construct <strong>TransferZ-Images</strong> from <strong>TransferZ</strong> (Soriano et. al. 2024), adding grixy images from <stong>HSC PDR2</stong> and applying image quality cuts as specified in Do et. al. 2024. We use <strong>TransferZ-Images</strong> for training the baseline models. We use the <strong>GalaxiesML</strong>GalaxiesML (Do et. al. 2024) for transfer learning. The <strong>TransferZ-Images</strong> dataset has redshift ground truths from photometric redshift estimates while <strong>GalaxiesML</strong> has ground truth from spectroscopy. 
-        <strong>TransferZ-Images</strong> is available on Zenodo <a href="https://zenodo.org/records/16989604?preview=1&token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImFlOThiYmM0LTRlMGItNDgzNS1iNjlkLTZmOWM1NzMyYmI5NyIsImRhdGEiOnt9LCJyYW5kb20iOiIwNGJjNjk1MDM5NTI5YWFmYjFmMDJjYjlhMTUzMzRlNCJ9.CQMk2RAOmlEFDWiu6ln6uQPc8Q_-0GTfzw47p_4EBz9ZjZjGJI_lrgpdSF-nwfrVboTfMOdBfnHe-tw8nPI5Xg">here</a>. <strong>GalaxiesML</strong> is available on Zenodo <a href="https://zenodo.org/records/11117528">here</a>.
-        
+    <p>We use two datasets in this work. First, we construct <strong>TransferZ-Images</strong> from <strong>TransferZ</strong> (Soriano et. al. 2024), adding grixy images from <stong>HSC PDR2</stong> and applying image quality cuts as specified in Do et. al. 2024. We use <strong>TransferZ-Images</strong> for training the baseline models. We use the <strong>GalaxiesML</strong> (Do et. al. 2024) for transfer learning. The <strong>TransferZ-Images</strong> dataset has redshift ground truths from photometric redshift estimates derived from 30+ wavelength bands while <strong>GalaxiesML</strong> has ground truth from spectroscopy. <strong>TransferZ-Images</strong> and <strong>GalaxiesML</strong> are available via Zenodo below. 
+        <!-- <strong>TransferZ-Images</strong> is available on Zenodo <a href="https://zenodo.org/records/16989604?preview=1&token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImFlOThiYmM0LTRlMGItNDgzNS1iNjlkLTZmOWM1NzMyYmI5NyIsImRhdGEiOnt9LCJyYW5kb20iOiIwNGJjNjk1MDM5NTI5YWFmYjFmMDJjYjlhMTUzMzRlNCJ9.CQMk2RAOmlEFDWiu6ln6uQPc8Q_-0GTfzw47p_4EBz9ZjZjGJI_lrgpdSF-nwfrVboTfMOdBfnHe-tw8nPI5Xg">here</a>. <strong>GalaxiesML</strong> is available on Zenodo <a href="https://zenodo.org/records/11117528">here</a>.
+         -->
 
     <!-- <ul>
       <li><strong>DESI DR1</strong>: DESI Collaboration, <a href="https://arxiv.org/abs/2503.14745">Data Release 1 of the Dark Energy Spectroscopic Instrument</a> (2025)</li>
       <li><strong>HSC PDR2</strong>: Aihara, H., et al., <a href="https://academic.oup.com/pasj/article/71/6/114/5602617">Second Data Release of the Hyper Suprime-Cam Subaru Strategic Program</a>. Publications of the Astronomical Society of Japan, 71(6), 114 (2019).</li>
       <li><strong>GalaxiesML</strong>: Do, T., et al., <a href="https://ui.adsabs.harvard.edu/abs/2024arXiv241000271D">GalaxiesML: a dataset of galaxy images, photometry, redshifts, and structural parameters for machine learning</a>, (2024)</li>
-    </ul> -->
+    <!-- </ul> --> 
     <div class="mb-3"></div>
-    <a href="https://doi.org/10.5281/zenodo.16989593" class="btn btn-success btn-lg" target="_blank">Access Dataset</a>
+    <a href="https://zenodo.org/records/16989604?preview=1&token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImFlOThiYmM0LTRlMGItNDgzNS1iNjlkLTZmOWM1NzMyYmI5NyIsImRhdGEiOnt9LCJyYW5kb20iOiIwNGJjNjk1MDM5NTI5YWFmYjFmMDJjYjlhMTUzMzRlNCJ9.CQMk2RAOmlEFDWiu6ln6uQPc8Q_-0GTfzw47p_4EBz9ZjZjGJI_lrgpdSF-nwfrVboTfMOdBfnHe-tw8nPI5Xg"class="btn btn-success btn-lg" target="_blank">Access TransferZ-Images</a>
+   <a href=https://zenodo.org/records/11117528 class="btn btn-success btn-lg" target="_blank">Access GalaxiesML</a>
+
+
   </section>
-
-    
-
-  <!-- Model Examples Section -->
-  <section id="model-examples" class="mb-5">
-    <h2> Model Architecture and Methods of integrating ground truths</h2>
-    <div class="text-center">
-    <img src=".paper_diagram.png" alt="LoRA training Architecture" class="img-fluid w-100 rounded">
-    </div>
-    <p><strong>Fig 1:</strong> The architecture for Low-Rank Adaptation.</p>
+  <!-- Model Architecture and Training Section -->
+  <section id="figures" class="mb-5">
+    <h2> Some figures </h2>
+      
+      <!-- <p>Our model consists of a ResNet18 backbone followed by a regressor with two linear layers with 512 and 256 neurons, with dropout layers (dropout=0.5) and SiLU activation between them.
+</p> -->
 
     <div class="text-center">
-      <img src="./cnn_lora_neurips_files/highredshiftsource.png" alt="Application to a High-Redshift Source" class="img-fluid w-75 rounded">
+    <img src="./cnn_lora_neurips_files/lora.png" alt="LoRA training Architecture" class="img-fluid w-100 rounded">
     </div>
-    <p><strong>Fig 2:</strong> The model's reconstruction process is shown for a high redshift source with a fully masked spectrum and a fully unmasked image. We measure the peak location, amplitude, and width of Lyman-alpha and C IV in the augmented and generated spectra. The Lyman-alpha line has an observed center at 3851.6 Å with a height of 17.24 and a width of 48 Å, compared to a reconstructed center at 3923.6 Å, height 5.84, and width 312 Å. Similarly, the C IV line has an observed center at 4907.6 Å, height 7.07, and width 72 Å, while the reconstructed line is at 4931.6 Å, with height 2.48 and width 648 Å.</p>
+    <p><strong>Fig 1:</strong> Visualization of LoRA implementation on a ResNet + regressor Model, based on Fig 1. in Hu et. al. 2021.</p>
+
+      
+      <br>
+    <div class="text-center">
+      <img src="./cnn_lora_neurips_files/lora_progression_combo_row_Seenivasan25.png" alt="LoRA Progression Plots" width="900" height="450">
+    </div>
+    <p><strong>Fig 2:</strong> The true redshift vs the predicted redshift for four models (a) CNN-Base, (b) CNN-TL, (c) CNN-LoRA and (d) CNN-Combo, evaluated on the Combo dataset. The color bar describes the log norm of the number of galaxies in each 2D histogram bin. The one-to-one line represents perfect agreement between ground truth and predictions. CNN-LoRA performs better than traditional transfer learning (CNN-TL), but not as well as retraining the entire dataset (CNN-Combo)</p>
     <div class="mb-3"></div>
 
-    <div class="text-center">
-      <img src="./cnn_lora_neurips_files/photoz_vs_specz.png" alt="Redshift Regression Results" class="img-fluid w-75 rounded">
-    </div>
-    <p><strong>Fig 3:</strong> The model's redshift regression results for the entire redshift range are shown (right). The redshift predictions were obtained from test data that had 25% of the image masked and 100% of the spectrum masked. The low-redshift regime used for comparison to <a href="https://doi.org/10.1093/mnras/stae1450"> AstroCLIP</a> is shown in more detail in the bottom left. The top left panel shows the scatter of the MMAE compared to AstroCLIP and a <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad6d5a">BCNN model</a> for this low-redshift regime. Lower scatter corresponds to more precise predictions.</p>
+
   </section>
 
    <!-- Code Section -->
@@ -345,9 +359,11 @@ between full retraining and zero-shot generalization. LoRA shows potential in al
     <h2>Poster</h2>
     <p>This poster was presented at the NeurIPS 2025 <a href="https://ml4physicalsciences.github.io/2025/"><em>Machine Learning and the Physical Sciences</em></a> Workshop on December 6, 2025 in San Diego, California.</p>
     <div class="text-center">
-      <img src="./cnn_lora_neurips_files/Final_Poster_CNN_LoRA_NeurIPS_2025" alt="NeurIPS 2025 ML4PS Poster" class="img-fluid w-75 rounded">
+      <img src="./cnn_lora_neurips_files/Final_Poster_CNN_LoRA_NeurIPS_2025.png" alt="NeurIPS 2025 ML4PS Poster" class="img-fluid w-75 rounded">
     </div>
-    <a href="./cnn_lora_neurips_files/To_Print_CNN_LoRA_NeurIPS_2025" class="btn btn-success btn-lg" target="_blank">Download as PDF</a>
+      <br>
+    
+    <a href="./cnn_lora_neurips_files/To_Print_CNN_LoRA_NeurIPS_2025.pdf" class="btn btn-success btn-lg" target="_blank">Download as PDF</a>
   </section>
 
 <!-- License Section -->

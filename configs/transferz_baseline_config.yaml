@@ -1,0 +1,27 @@
+run_name: transferz_baseline_optimized
+epochs: 500
+batch_size: 512
+image_size: 127
+lr: 0.001
+scheduler: true
+dataset: 2
+model_description: "TransferZ baseline model with optimized parameters with new v7 dataset and 127x127 image size"
+optimizer_type: "adam"
+activation: "silu" # This activation is for the classifier
+dropout_rate: 0.5
+nested: false
+hidden_dims: [512, 256]
+memory_limit: 30
+spectra_mode: false
+save_frequency: 10
+data_fraction: 1.0
+early_stopping: true
+
+# LoRA parameters
+lora_flag: false
+
+# Transfer learning
+transfer_learn: false
+
+# Checkpoint path (optional)
+checkpoint: null

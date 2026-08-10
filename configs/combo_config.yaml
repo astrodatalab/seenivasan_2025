@@ -1,0 +1,27 @@
+run_name: combo_optimized
+epochs: 145
+batch_size: 512
+image_size: 64
+lr: 0.001
+scheduler: True
+early_stopping: False 
+dataset: 3
+model_description: "Combo model with optimized parameters with new v7 dataset same epochs as TZtoGM LoRA full model"
+optimizer_type: "adam"
+activation: "silu" # This activation is for the classifier
+dropout_rate: 0.5
+nested: false
+hidden_dims: [512, 256]
+memory_limit: 30
+spectra_mode: false
+save_frequency: 10
+data_fraction: 1.0
+
+# LoRA parameters
+lora_flag: false
+
+# Transfer learning
+transfer_learn: false
+
+# Checkpoint path (optional)
+checkpoint: null

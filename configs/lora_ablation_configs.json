@@ -1,0 +1,17 @@
+[
+  { "name": "full_r2_a8_d0.0",  "lora_type": "full", "r": 2, "alpha": 8,  "dropout": 0.0 },
+  { "name": "full_r4_a16_d0.1", "lora_type": "full", "r": 4, "alpha": 16, "dropout": 0.1 },
+  { "name": "full_r8_a32_d0.1", "lora_type": "full", "r": 8, "alpha": 32, "dropout": 0.1 },
+  { "name": "full_r8_a64_d0.2", "lora_type": "full", "r": 8, "alpha": 64, "dropout": 0.2 },
+  { "name": "full_r16_a64_d0.3","lora_type": "full", "r": 16,"alpha": 64, "dropout": 0.3 },
+
+  { "name": "resnet_r2_a8_d0.0",  "lora_type": "resnet", "r": 2, "alpha": 8,  "dropout": 0.0 },
+  { "name": "resnet_r4_a16_d0.0",  "lora_type": "resnet", "r": 4, "alpha": 16, "dropout": 0.0 },
+  { "name": "resnet_r8_a32_d0.1",  "lora_type": "resnet", "r": 8, "alpha": 32, "dropout": 0.1 },
+  { "name": "resnet_r16_a64_d0.1", "lora_type": "resnet", "r": 16,"alpha": 64, "dropout": 0.1 },
+
+  { "name": "classifier_r2_a8_d0.2",  "lora_type": "classifier", "r": 2, "alpha": 8,  "dropout": 0.2 },
+  { "name": "classifier_r4_a16_d0.3", "lora_type": "classifier", "r": 4, "alpha": 16, "dropout": 0.3 },
+  { "name": "classifier_r8_a32_d0.4", "lora_type": "classifier", "r": 8, "alpha": 32, "dropout": 0.4 },
+  { "name": "classifier_r16_a64_d0.5", "lora_type": "classifier", "r": 16,"alpha": 64, "dropout": 0.5 }
+]

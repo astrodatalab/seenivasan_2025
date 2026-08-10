@@ -1,0 +1,31 @@
+run_name: GMbase_TZLoraFull
+epochs: 500
+batch_size: 512
+image_size: 64
+lr: 0.0001
+scheduler: true
+dataset: 2
+model_description: "GM base --> TZ Lora Full on ResNet model with 2-layer classifier"
+optimizer_type: "adam"
+activation: "silu" # This activation is for the classifier
+dropout_rate: 0.5
+nested: false
+hidden_dims: [512, 256]
+memory_limit: 30
+spectra_mode: false
+save_frequency: 1
+data_fraction: 1.0
+early_stopping: true
+
+# LoRA parameters
+lora_flag: true
+lora_type: "full"
+lora_r: 4
+lora_alpha: 16
+lora_dropout: 0.1
+
+# Transfer learning
+transfer_learn: false
+
+# Checkpoint path (optional)
+checkpoint: 'add_your_checkpoint_file.pth'

@@ -1,0 +1,29 @@
+run_name: galaxiesml_baseline_optimized
+epochs: 500
+batch_size: 512
+image_size: 64
+lr: 0.001
+scheduler: true
+dataset: 1
+model_description: "Retraining of GalaxiesML Baseline for NeurIPS 2025 Camera Ready Paper"
+optimizer_type: "adam"
+activation: "silu" # This activation is for the classifier
+dropout_rate: 0.5
+nested: false
+hidden_dims: [512, 256]
+memory_limit: 30
+spectra_mode: false
+silu_push_force: false
+save_frequency: 10
+bnn: false
+data_fraction: 1.0
+early_stopping: true
+
+# LoRA parameters
+lora_flag: false
+
+# Transfer learning
+transfer_learn: false
+
+# Checkpoint path (optional)
+checkpoint: null
